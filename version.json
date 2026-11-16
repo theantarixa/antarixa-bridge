@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "changelog": [
+    "Initial public release of antarixa-bridge",
+    "Zero-resmon architecture (0.00ms flat)",
+    "Auto-detect Qbox, QBCore, ESX, and ox_inventory",
+    "Unified Target & Progressbar adapters",
+    "Added automated GitHub Version & Telemetry Checker"
+  ]
+}
