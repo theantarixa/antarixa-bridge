@@ -42,15 +42,15 @@ local Bridge = exports['antarixa-bridge']:GetBridge()
 You can register any resource on your server to automatically check for updates and bug fixes on boot:
 
 ```lua
--- server-side in your script:
-Bridge.RegisterVersionCheck(GetCurrentResourceName(), 'theantarixa/nama-repo-kamu', 'main')
+-- Server-side in any resource:
+Bridge.RegisterVersionCheck(GetCurrentResourceName(), 'theantarixa/antarixa-bridge', 'main')
 ```
 If an update is pushed to GitHub, the server console will display:
 ```
 ========================================================================
-[Antarixa:UPDATE AVAILABLE] NAMA-SCRIPT
+[Antarixa:UPDATE AVAILABLE] ANTARIXA-BRIDGE
 Current Version: v1.0.0 ───> Latest Version: v1.0.5
-Download / Release: https://github.com/theantarixa/nama-repo-kamu/releases/latest
+Download / Release: https://github.com/theantarixa/antarixa-bridge/releases/latest
 ========================================================================
 Patch Notes & Bug Fixes:
   • Fixed oxmysql deadlock on high concurrency
