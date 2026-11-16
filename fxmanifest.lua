@@ -13,7 +13,6 @@ provide 'antarixa-bridge'
 provide 'community_bridge'
 
 shared_scripts {
-    '@ox_lib/init.lua',
     'config.lua',
     'init.lua'
 }
@@ -28,7 +27,6 @@ client_scripts {
 }
 
 server_scripts {
-    '@oxmysql/lib/MySQL.lua',
     'server/main.lua',
     'server/framework.lua',
     'server/inventory.lua',

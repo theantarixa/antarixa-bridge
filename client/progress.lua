@@ -1,7 +1,7 @@
 function Bridge.Progress(options)
     local duration = options.duration or 5000
     local label = options.label or 'Processing...'
-    local useCircle = options.useCircle ~= false -- Default to circle if ox_lib
+    local useCircle = options.useCircle ~= false
 
     if GetResourceState('ox_lib') == 'started' then
         local progressConfig = {
@@ -28,11 +28,14 @@ function Bridge.Progress(options)
             } or nil
         }
 
+        local ox = lib or exports.ox_lib
         local success = false
-        if useCircle then
-            success = lib.progressCircle(progressConfig)
-        else
-            success = lib.progressBar(progressConfig)
+        if ox then
+            if useCircle and ox.progressCircle then
+                success = ox.progressCircle(progressConfig)
+            elseif ox.progressBar then
+                success = ox.progressBar(progressConfig)
+            end
         end
 
         if success then
@@ -83,7 +86,6 @@ function Bridge.Progress(options)
         end
     end
 
-    -- Standalone fallback: simple Wait
     Wait(duration)
     if options.onComplete then options.onComplete() end
     return true

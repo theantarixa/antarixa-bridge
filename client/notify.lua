@@ -3,7 +3,6 @@ function Bridge.Notify(msg, nType, duration, title)
     duration = duration or 5000
     title = title or 'System'
 
-    -- Normalize notification types
     local oxType = 'inform'
     if nType == 'success' then oxType = 'success'
     elseif nType == 'error' then oxType = 'error'
@@ -11,13 +10,23 @@ function Bridge.Notify(msg, nType, duration, title)
     end
 
     if GetResourceState('ox_lib') == 'started' then
-        lib.notify({
-            title = title,
-            description = msg,
-            type = oxType,
-            duration = duration,
-            position = 'top-right'
-        })
+        if lib and lib.notify then
+            lib.notify({
+                title = title,
+                description = msg,
+                type = oxType,
+                duration = duration,
+                position = 'top-right'
+            })
+        elseif exports.ox_lib then
+            exports.ox_lib:notify({
+                title = title,
+                description = msg,
+                type = oxType,
+                duration = duration,
+                position = 'top-right'
+            })
+        end
     elseif Bridge.Framework == 'qbx' or Bridge.Framework == 'qb' then
         local QBCore = exports['qb-core'] and exports['qb-core']:GetCoreObject()
         if QBCore and QBCore.Functions.Notify then
